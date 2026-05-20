@@ -1,0 +1,126 @@
+name: Incident report
+description: Document a worked example of recognition-without-arrest or an adjacent failure shape
+title: "[incident] <one-line summary>"
+labels: ["incident", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for filing. Please fill in what is relevant to your case. Fields marked optional may be omitted under confidentiality constraints — note the omission in **Redaction notes** at the end.
+
+        If your case meets the [five conceits](https://gist.github.com/beq00000/46e131f359f3b32662740d5dca7d0761) of a constellation member, consider filing against [`anthropics/claude-code`](https://github.com/anthropics/claude-code/issues/new) instead, with a cross-reference here.
+
+  - type: dropdown
+    id: session-shape
+    attributes:
+      label: Session shape
+      description: The shape of the session in which the failure surfaced.
+      options:
+        - Clean-state (non-drifted single-session)
+        - Within-session drift
+        - Multi-day continuous session
+        - Cross-session (failure transmitted from a prior session)
+        - Sub-agent / parallel-instance
+        - Other (describe in narrative)
+    validations:
+      required: true
+
+  - type: textarea
+    id: input-shape
+    attributes:
+      label: Input shape that triggered the failure
+      description: What was the operator asking for? What artefacts were available in the environment? What memory/CLAUDE.md context was loaded?
+      placeholder: |
+        e.g. "Operator asked for a structured code review pass on a refactor PR. CLAUDE.md included a rule X. The PR diff was readable on disk. The model had access to the existing test suite."
+    validations:
+      required: true
+
+  - type: textarea
+    id: recognition
+    attributes:
+      label: What the model recognised and articulated
+      description: What did the model identify as the relevant constraint, gap, or premise? Did it articulate the recognition in the response stream?
+      placeholder: |
+        e.g. "The model stated 'I haven't verified Y' in the response, and named the cost of verifying as low. The constraint was emitted as text."
+    validations:
+      required: true
+
+  - type: textarea
+    id: action-shipped
+    attributes:
+      label: What action shipped despite the recognition
+      description: What did the model then do? What was the gap between the articulated recognition and the action that emerged?
+      placeholder: |
+        e.g. "The model proceeded to recommend an architectural option that depended on Y being verified. The recommendation was emitted in the same response as the caveat."
+    validations:
+      required: true
+
+  - type: textarea
+    id: operator-gate
+    attributes:
+      label: Operator gate that caught it (or absence of one)
+      description: How was the failure caught? Operator Socratic narrowing? Runtime hook? Tooling check? Or did it survive into a shipped artefact?
+      placeholder: |
+        e.g. "Operator asked 'is X verifiable / already documented' — the gradient question forced re-engagement and the model self-corrected." Or: "Not caught in-session; surfaced when CI ran the verification the model had skipped."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: structural-category
+    attributes:
+      label: Hypothesised structural category
+      description: |
+        Which of the constellation's structural categories does this most closely instance? If multiple, pick the most load-bearing.
+      options:
+        - "Input failure (signal the model needs and lacks)"
+        - "Process failure (signal the model has and underweights)"
+        - "Output failure (cadence calibrated for the wrong metric)"
+        - "Within-session register drift"
+        - "Inter-session contagion (transcript-reading)"
+        - "Inter-session contagion (operator-curated persistent artefacts)"
+        - "Substitution-by-default (active form of recognition-without-arrest)"
+        - "Intersection / limit case"
+        - "Unknown / does not map cleanly"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: binary-collapse
+    attributes:
+      label: Binary-collapse signature?
+      description: |
+        Was the failure consistent with the binary-collapse subhypothesis — a decision that should sit on a gradient (rank-ordered priorities, weighted options, calibrated confidence) collapsed to a binary (listed/not listed, accept/reject, done/not done)?
+      options:
+        - "Yes — clear binary-collapse"
+        - "Partial — gradient was present but compressed"
+        - "No — not gradient-shaped"
+        - "Unclear / did not assess"
+
+  - type: textarea
+    id: cross-references
+    attributes:
+      label: Cross-references
+      description: Links to constellation members, prior cases, related issues, or relevant hook-shipping work. Free-form.
+      placeholder: |
+        - Adjacent to anthropics/claude-code#XXXXX
+        - Hook that would have caught this: yurukusa/cc-safe-setup#YYY
+        - Prior case in this repo: cases/ZZZZ.md
+
+  - type: textarea
+    id: redaction-notes
+    attributes:
+      label: Redaction notes
+      description: |
+        What has been abstracted from the original case, and along what axes? This lets a reader calibrate the structural claim against what is held back.
+      placeholder: |
+        e.g. "Project name abstracted to 'an ERP SaaS'. File paths abstracted. Specific identifiers (table names, decision IDs) generalised. The operator prompt that triggered the failure is preserved verbatim because the structural observation depends on it. The agent's full response is paraphrased; the in-stream caveat is preserved verbatim."
+
+  - type: checkboxes
+    id: voice-and-confidentiality
+    attributes:
+      label: Voice and confidentiality acknowledgements
+      options:
+        - label: I have indicated where the operator's voice and the agent's voice differ in this report, where the distinction matters.
+        - label: I have completed any redactions required by confidentiality, and the redaction notes above describe what was abstracted.
+        - label: I have considered whether reading this report verbatim could transmit drifted-register patterns to a fresh Claude instance, and have included a contagion warning at the top of the report if so.
+        - label: I have attributed any naming, framing, or evidence drawn from other contributors with links to the canonical source.
