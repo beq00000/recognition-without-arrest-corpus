@@ -32,12 +32,13 @@ The corpus operates under that principle. Operator-side gates that route through
 
 ## The constellation's structural-property map
 
-The diagnostic map across the constellation's nine members. Each member instances a distinct property of the recognition-without-arrest family:
+The diagnostic map across the constellation's ten members. Each member instances a distinct property of the recognition-without-arrest family:
 
 | Category | Member | Property |
 |---|---|---|
 | Input failure | [#59514](https://github.com/anthropics/claude-code/issues/59514) | Context-budget self-estimate is divinatory. |
 | Process failure | [#59529](https://github.com/anthropics/claude-code/issues/59529) | Memory directives load into context but do not gate at the action layer. |
+| Process failure — surface stratification | [#60977](https://github.com/anthropics/claude-code/issues/60977) | Categorical prohibitions gate at named instances but not at their rule-implied counterparts; same-rule gating reliability stratifies by surface-form fidelity to the named exemplar. |
 | Output failure | [#59555](https://github.com/anthropics/claude-code/issues/59555) | Check-in cadence calibrated for engagement, not operator velocity. |
 | Within-session drift — entry | [#60188](https://github.com/anthropics/claude-code/issues/60188) | Output and permission-prompt rate inflate at the mechanical-phase transition. |
 | Within-session drift — recovery | [#60248](https://github.com/anthropics/claude-code/issues/60248) | In-loop interventions do not reliably exit the drifted register. |

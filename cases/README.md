@@ -27,6 +27,7 @@ The constellation members already serve as a reference set of constellation-grad
 - [#60265](https://github.com/anthropics/claude-code/issues/60265) — compact intensifies drift
 - [#60352](https://github.com/anthropics/claude-code/issues/60352) — operator-curated artefact contagion
 - [#60506](https://github.com/anthropics/claude-code/issues/60506) — six-day rigorous-operator limit case
+- [#60977](https://github.com/anthropics/claude-code/issues/60977) — categorical prohibitions gated at named instances but not at rule-implied counterparts
 
 The structural-parent frame and cross-field synthesis live in [#60226](https://github.com/anthropics/claude-code/issues/60226) (@suwayama).
 
