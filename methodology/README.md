@@ -52,7 +52,7 @@ A working hypothesis about a candidate generative mechanism, originated under op
 
 > *Recognition-without-arrest may relate to binary collapse of what should be a gradient. A signal that should sit on a rank-ordering ("raise the cost of this shape," "consider option A weighted higher than B," "this is more substantive than that") collapses to a binary ("blocked / not blocked," "listed / not listed," "done / not done"). The action gate fires correctly against the binary surface; the underlying gradient never gates.*
 
-The hypothesis is currently subject to a falsifiability test @yurukusa is running against an emission corpus over a 10-day window from 2026-05-19 ([the test prediction is on #60188](https://github.com/anthropics/claude-code/issues/60188#issuecomment-4486862701)). The test compares gradient-flat emissions (binary present/absent — flag lists, "items to address," boolean classifications) against gradient-ordered emissions (ranked / weighted — priority lists, calibrated-confidence claims) and measures the rate at which each surfaces narrowed-out items under operator Socratic-narrowing.
+The hypothesis is currently subject to a falsifiability test @yurukusa committed to running against their own emission corpus over a 10-day window from 2026-05-19 ([the commitment is on #60226](https://github.com/anthropics/claude-code/issues/60226#issuecomment-4492751034)). The test compares gradient-flat emissions (binary present/absent — flag lists, "items to address," boolean classifications) against gradient-ordered emissions (ranked / weighted — priority lists, calibrated-confidence claims) and measures the rate at which each surfaces narrowed-out items under operator Socratic-narrowing.
 
 If the test survives, the corpus gains a structural explanation; if it falsifies, the cluster updates and the next hypothesis takes its turn. Either outcome is data the corpus benefits from.
 
@@ -89,11 +89,11 @@ Runtime-side defences operationalising the corpus's observations:
 | [`waitdeadai/llm-dark-patterns`](https://github.com/waitdeadai/llm-dark-patterns) | Stop + SubagentStop | Deterministic regex verdicts across 28 patterns. | F1 0.815 (95% CI [0.615, 0.941]) against MAST mode 3.3 ([Cemri et al., NeurIPS 2025](https://arxiv.org/abs/2503.13657)), n=19, Fleiss κ = 1.000; bash-Rust parity zero per-trace disagreement on the labelled subset. |
 | [`ianymu/claude-verify-before-stop`](https://github.com/ianymu/claude-verify-before-stop) | Stop | Strict-contract `VERIFIED` log requirement via filesystem write. | Composition with `no-vibes` and `no-unreachable-symbol` proposed on [#60451](https://github.com/anthropics/claude-code/issues/60451). |
 
-The three suites compose. *"`no-vibes` runs hot all session (passive, vocabulary-grammar), `verify-before-stop` runs at the Stop boundary (active, log-file ground truth), `no-unreachable-symbol` runs at the Stop boundary (passive, git-diff-grammar). They don't interfere; they triangulate."* — [@ianymu on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4499399876).
+The three suites compose. `no-vibes` runs hot all session (passive, vocabulary-grammar), `no-unreachable-symbol` runs at the Stop boundary (passive, git-diff-grammar), `verify-before-stop` runs at the Stop boundary (active, log-file ground truth). *"They don't interfere; they triangulate."* — [@ianymu on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4499361129).
 
 ## The MAST 3.3 anchor
 
-The corpus's external academic handle is MAST mode 3.3 ("No or Incorrect Verification") from [Cemri et al., NeurIPS 2025 (arXiv:2503.13657)](https://arxiv.org/abs/2503.13657). The three-stage decomposition the cluster has converged on (Recognition → Articulation → Non-gating) gives MAST mode 3.3 a failure-mechanism decomposition the original paper does not provide; MAST mode 3.3 gives the cluster a published evaluation handle. The cross-link was made by [@waitdeadai on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4477196881).
+The corpus's external academic handle is MAST mode 3.3 ("No or Incorrect Verification") from [Cemri et al., NeurIPS 2025 (arXiv:2503.13657)](https://arxiv.org/abs/2503.13657). The three-stage decomposition the cluster has converged on (Recognition → Articulation → Non-gating) gives MAST mode 3.3 a failure-mechanism decomposition the original paper does not provide; MAST mode 3.3 gives the cluster a published evaluation handle. The cross-link was made by [@waitdeadai on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4489749993).
 
 The triangle of evidence the cross-link enables:
 
@@ -102,7 +102,7 @@ The triangle of evidence the cross-link enables:
 - Decomposition: @yurukusa's 10-pattern synthesis across the 130-case handbook.
 - Measurement: @waitdeadai's F1 0.815 / κ 1.000 / bash-Rust parity.
 
-*"Frame + ground-truth-rate + decomposition + measurement. That's the publication-grade case shape."* — [@waitdeadai on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4480029273).
+*"Frame + ground-truth-rate + decomposition + measurement. That's the publication-grade case shape."* — [@waitdeadai on the cross-cluster synthesis gist](https://gist.github.com/yurukusa/93123855318c022f21df92a7ac33c87b#gistcomment-6157837).
 
 ## The emergent-architecture principle
 

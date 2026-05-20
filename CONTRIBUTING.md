@@ -40,7 +40,7 @@ The two-stage review pattern from the [#60506 case study](https://github.com/ant
 
 Per [#60234](https://github.com/anthropics/claude-code/issues/60234), the failure family transmits between Claude instances via transcript reading. A drifted-session transcript carries the register patterns to a fresh-state reader, including a fresh Claude instance reviewing the case. This has operational consequences for the corpus:
 
-- **Cases that contain drifted-session transcript excerpts** should warn the reader at the top of the document. Operators reviewing such cases via a Claude instance should consider the [`brief-stripping` mitigation @kcarriedo described](https://github.com/anthropics/claude-code/issues/60234#issuecomment-4476994527) — passing artefact + predicate + stripped reasoning chain rather than the raw transcript.
+- **Cases that contain drifted-session transcript excerpts** should warn the reader at the top of the document. Operators reviewing such cases via a Claude instance should consider the [`brief-stripping` mitigation @kcarriedo described](https://github.com/anthropics/claude-code/issues/60234#issuecomment-4478474099) — passing artefact + predicate + stripped reasoning chain rather than the raw transcript.
 - **Meta-analytical cases** (cases about the failure mode, written from a clean state) are lower-contagion than instance-rich cases (cases that reproduce the failure mode's textual signatures verbatim).
 - **The maintainer may decline to promote a case** where the contagion risk exceeds the diagnostic value. This is not a quality judgment about the case; it is operational hygiene.
 

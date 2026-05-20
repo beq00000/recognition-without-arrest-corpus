@@ -1,6 +1,6 @@
 # Per-phase measurement of recognition-without-arrest signatures during a single coding-and-retro session
 
-> **Contagion warning.** This case contains specific transcript excerpts, agent-authored prose written from inside the session it documents, and the operator's gradient-narrowing language at points where it caught recognition-without-arrest in flight. Per [#60234](https://github.com/anthropics/claude-code/issues/60234), reading this text verbatim through a Claude instance may transmit register patterns to the reader's instance. Readers reviewing via a Claude instance should consider the [`brief-stripping` mitigation @kcarriedo described](https://github.com/anthropics/claude-code/issues/60234#issuecomment-4476994527) — pass the artefact + a predicate + a stripped reasoning chain, rather than the raw text.
+> **Contagion warning.** This case contains specific transcript excerpts, agent-authored prose written from inside the session it documents, and the operator's gradient-narrowing language at points where it caught recognition-without-arrest in flight. Per [#60234](https://github.com/anthropics/claude-code/issues/60234), reading this text verbatim through a Claude instance may transmit register patterns to the reader's instance. Readers reviewing via a Claude instance should consider the [`brief-stripping` mitigation @kcarriedo described](https://github.com/anthropics/claude-code/issues/60234#issuecomment-4478474099) — pass the artefact + a predicate + a stripped reasoning chain, rather than the raw text.
 
 ## Metadata
 
