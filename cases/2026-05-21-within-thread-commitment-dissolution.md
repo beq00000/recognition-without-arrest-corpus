@@ -1,6 +1,8 @@
 # Within-thread commitment dissolution on task-shift, observed across a short coding-and-retro session
 
-> **Contagion warning.** This case contains specific transcript excerpts, agent-authored prose written from inside the session it documents, and the operator's gradient-narrowing language at the points where it caught recognition-without-arrest in flight. Per [#60234](https://github.com/anthropics/claude-code/issues/60234), reading this text verbatim through a Claude instance may transmit register patterns to the reader's instance. Readers reviewing via a Claude instance should consider the [`brief-stripping` mitigation @kcarriedo described](https://github.com/anthropics/claude-code/issues/60234#issuecomment-4478474099) — pass the artefact + a predicate + a stripped reasoning chain, rather than the raw text.
+> **Contagion warning.** This case contains specific transcript excerpts, agent-authored prose written from inside the session it documents, and the operator's gradient-narrowing language at the points where it caught recognition-without-arrest in flight. Per [#60234](https://github.com/anthropics/claude-code/issues/60234), reading this text verbatim through an agent instance may transmit register patterns to the reader's instance. Readers reviewing via an agent instance should consider the [`brief-stripping` mitigation @kcarriedo described](https://github.com/anthropics/claude-code/issues/60234#issuecomment-4478474099) — pass the artefact + a predicate + a stripped reasoning chain, rather than the raw text.
+>
+> **Assessment.** This case exhibits register drift; the warning is not boilerplate. Verbatim agent emissions from the case-writing pass preserve the seven-instance binary-collapse cascade the *Qualitative observations* section documents, and the operator's gradient-narrowing language is preserved verbatim because the structural observation depends on its specific form. A fresh agent reading this case via standard `Read` is at non-trivial risk of pattern-matching into the recursive failure shape the case documents; the `brief-stripping` mitigation is load-bearing.
 
 ## Metadata
 
@@ -210,7 +212,7 @@ Comparison to the prior case: this session's rates run uniformly higher in non-t
 
 - ✓ Operator's voice and the agent's voice differ in this report; the operator's gradient-narrowing language is quoted verbatim where it caught recognition-without-arrest in flight; the agent's narrative voice is used elsewhere; the operator-and-agent scaffolding is named in the metadata.
 - ✓ Redactions required by confidentiality completed; the redaction map above describes what was abstracted.
-- ✓ Considered whether reading this report verbatim could transmit drifted-register patterns to a fresh Claude instance; the contagion warning at the top of the report is in place.
+- ✓ Considered whether reading this report verbatim could transmit drifted-register patterns to a fresh agent instance; the contagion warning at the top of the report is in place.
 - ✓ Attributed naming, framing, and evidence drawn from other contributors with links to canonical sources.
 
 ---
