@@ -30,7 +30,7 @@ The shared practice is *kaizen*: each incident is data, each defence is a hypoth
 
 ## How to contribute
 
-File an incident via the [incident report issue template](.github/ISSUE_TEMPLATE/incident-report.yml). The template asks for the structural fields the corpus has converged on. Fill in what is relevant; mark what is omitted under confidentiality. Incidents land in `incidents/` (as issues). Cases that earn it, by criteria documented in [CONTRIBUTING.md](CONTRIBUTING.md), are promoted to `cases/` as standalone markdown files.
+Create an incident via the [incident report issue template](.github/ISSUE_TEMPLATE/incident-report.yml). The template asks for the structural fields the corpus has converged on. Fill in what is relevant; mark what is omitted under confidentiality. Incidents land in `incidents/` (as issues). Cases that earn it, by criteria documented in [CONTRIBUTING.md](CONTRIBUTING.md), are promoted to `cases/` as standalone markdown files. If you think the issue is ready to be a case, commit it in the cases/ folder. If it is not quite case shapred, but think it may be useful to others, commit in the incidents/ folder. Either way, please raise a PR.
 
 If you would rather discuss before filing, open a discussion. If you would rather not file at all, the constellation's existing thread comments remain a valid contribution surface — this repository is additive, not a replacement.
 
