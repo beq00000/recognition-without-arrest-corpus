@@ -28,6 +28,7 @@ The constellation members already serve as a reference set of constellation-grad
 - [#60352](https://github.com/anthropics/claude-code/issues/60352) — operator-curated artefact contagion
 - [#60506](https://github.com/anthropics/claude-code/issues/60506) — six-day rigorous-operator limit case
 - [#60977](https://github.com/anthropics/claude-code/issues/60977) — categorical prohibitions gated at named instances but not at rule-implied counterparts
+- [#61388](https://github.com/anthropics/claude-code/issues/61388) — within-thread commitment dissolution on task-shift (RUSE Surface 4 / multi-turn axis)
 
 The structural-parent frame and cross-field synthesis live in [#60226](https://github.com/anthropics/claude-code/issues/60226) (@suwayama).
 
