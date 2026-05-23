@@ -23,13 +23,17 @@ def test_total_tool_uses_matches_aggregate_sum():
     assert tool_calls.total_tool_uses(records) == 3
 
 
-def test_count_by_record_type_splits_operator_from_system_reminder():
-    """User records split into operator-authored vs system-reminder buckets."""
+def test_count_by_record_type_splits_user_three_ways():
+    """User records split into operator / system-reminder / tool-result buckets.
+
+    Fixture: 3 operator-authored messages + 1 system-reminder + 1
+    tool_result-bearing record = 5 user records total.
+    """
     records = list(transcript.parse(FIXTURE))
     counts = tool_calls.count_by_record_type(records)
-    # Fixture: 3 operator messages + 1 system-reminder = 4 user records total.
     assert counts["user (operator)"] == 3
     assert counts["user (system-reminder)"] == 1
+    assert counts["user (tool result)"] == 1
     # And 3 assistant records (each with at least one tool_use or text block).
     assert counts["assistant"] == 3
 

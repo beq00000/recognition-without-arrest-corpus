@@ -84,6 +84,40 @@ def test_assistant_record_yields_text_blocks_including_thinking():
     assert any("On it." in t for t in texts)  # text content
 
 
+def test_user_record_with_tool_result_content_is_not_operator_message():
+    """Real-data shape: user records often carry tool_result blocks.
+
+    Bug surfaced by reality-check against a session transcript: an absent
+    exclusion of list-shaped content inflated operator-message counts by
+    the volume of tool_result records (302 / 345 in the session sampled
+    at fix time). The check requires text_content to be set — list-shaped
+    content (tool_result, tool_use_result, etc.) is excluded.
+    """
+    records = list(transcript.parse(FIXTURE))
+    tool_result_user = next(
+        r for r in records
+        if r.is_user and r.content_blocks and not r.text_content
+    )
+    assert tool_result_user.is_operator_message is False
+    assert tool_result_user.is_system_reminder is False  # no text_content to check
+
+
+def test_pr_link_and_system_records_skipped_by_default():
+    """Both record types are internal Claude Code state, not corpus analysis surface."""
+    records = list(transcript.parse(FIXTURE))
+    types = [r.type for r in records]
+    assert "pr-link" not in types
+    assert "system" not in types
+
+
+def test_pr_link_and_system_records_surfaced_with_include_internal():
+    """include_internal=True still surfaces them — discoverable when needed."""
+    records = list(transcript.parse(FIXTURE, include_internal=True))
+    types = [r.type for r in records]
+    assert "pr-link" in types
+    assert "system" in types
+
+
 def test_raw_preserved_for_unmodelled_fields():
     """The full JSON record is accessible via .raw for downstream code."""
     records = list(transcript.parse(FIXTURE))

@@ -39,7 +39,8 @@ from typing import Any, Iterator
 
 # Internal record types skipped by default — not load-bearing for any
 # corpus analysis to date. Surfaced via include_internal=True for the
-# rare case where they are.
+# rare case where they are. Surveyed against real session transcripts;
+# `pr-link` was missed at schema-survey time and added retroactively.
 _INTERNAL_TYPES = frozenset(
     {
         "permission-mode",
@@ -48,6 +49,8 @@ _INTERNAL_TYPES = frozenset(
         "last-prompt",
         "queue-operation",
         "attachment",
+        "pr-link",
+        "system",  # operational metadata records (subtype=turn_duration etc.)
     }
 )
 
@@ -82,10 +85,26 @@ class Record:
 
     @property
     def is_system_reminder(self) -> bool:
-        """True if this user-typed record is a system reminder injection
-        (``<system-reminder>`` tags in the content body), not an
-        operator-authored message. Distinguishing the two is load-bearing
-        for any analysis that counts operator interventions.
+        """True if this user-typed record carries a ``<system-reminder>``
+        tag in its plain-text content.
+
+        **Storage caveat.** On Claude Code 2.1.x transcripts (the
+        version sampled at tool-design time), the runtime
+        ``<system-reminder>`` injections operators see during sessions
+        do not appear to be persisted to the JSONL — at least not in
+        the user-record content surface this property reads. Tags
+        that DO appear in transcripts are either (a) inside
+        ``tool_use`` arguments (file writes whose content contained
+        the literal text) or (b) in the top-level ``toolUseResult``
+        field (mirror of tool-write outputs). Neither surface counts
+        as a system reminder for analysis purposes.
+
+        On versions / configurations where the tags ARE persisted as
+        user-record content (or future runtime changes that surface
+        them), this property correctly detects them. The 2026-05-20
+        case's preservation of recurring system-reminder text
+        verbatim suggests at least some sessions / versions do carry
+        them.
         """
         if not self.is_user or self.text_content is None:
             return False
@@ -93,10 +112,22 @@ class Record:
 
     @property
     def is_operator_message(self) -> bool:
-        """True if this is a user-typed record that is NOT a system
-        reminder — i.e., authored by the operator.
+        """True if this is a user-typed record with plain-text content
+        that is NOT a system reminder — i.e., authored by the operator.
+
+        Requires ``text_content`` to be set (string content, not a list
+        of content blocks). User records whose content is a list (e.g.,
+        carrying tool_result blocks from Claude Code's tool-call cycle)
+        are not operator messages; this exclusion is load-bearing
+        because they're the dominant user-record shape in real
+        transcripts and an absent exclusion inflates operator-message
+        counts by an order of magnitude.
         """
-        return self.is_user and not self.is_system_reminder
+        return (
+            self.is_user
+            and self.text_content is not None
+            and not self.is_system_reminder
+        )
 
     def tool_uses(self) -> Iterator[dict[str, Any]]:
         """Iterate tool_use blocks in this record (assistant records only)."""

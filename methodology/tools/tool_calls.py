@@ -45,16 +45,25 @@ def count_by_record_type(
 ) -> Counter[str]:
     """Count records by ``type`` field — useful for high-level shape.
 
-    Distinguishes operator messages from system reminders at the
-    user-record level (they collapse to ``type == "user"`` otherwise).
+    User records are split three ways: operator-authored (plain text
+    content, no system-reminder tag), system-reminder (plain text
+    content with ``<system-reminder>`` tag — see the storage caveat
+    on ``Record.is_system_reminder``), and tool result (list-shaped
+    content carrying ``tool_result`` blocks from Claude Code's
+    tool-call cycle). In real transcripts the tool-result category is
+    typically the largest user-record bucket; collapsing it into
+    "operator" inflates operator-message counts by an order of
+    magnitude.
     """
     counts: Counter[str] = Counter()
     for rec in records:
         if rec.is_user:
-            if rec.is_system_reminder:
+            if rec.is_operator_message:
+                counts["user (operator)"] += 1
+            elif rec.is_system_reminder:
                 counts["user (system-reminder)"] += 1
             else:
-                counts["user (operator)"] += 1
+                counts["user (tool result)"] += 1
         else:
             counts[rec.type] += 1
     return counts

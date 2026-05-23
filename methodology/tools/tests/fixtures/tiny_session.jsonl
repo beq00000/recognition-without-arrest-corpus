@@ -8,3 +8,6 @@
 {"type":"ai-title","title":"fixture session"}
 {"type":"assistant","uuid":"a-3","timestamp":"2026-05-23T10:00:05.000Z","message":{"role":"assistant","content":[{"type":"text","text":"Caught. Will not echo via Bash again."}]}}
 {"type":"user","uuid":"u-4","timestamp":"2026-05-23T10:00:06.000Z","message":{"role":"user","content":"Doesn't consistency inherently reduce cognitive load on external pairs of eyes?"}}
+{"type":"user","uuid":"u-5","timestamp":"2026-05-23T10:00:07.000Z","message":{"role":"user","content":[{"tool_use_id":"tu-2","type":"tool_result","content":"total 0\ndrwxr-xr-x ..."}]}}
+{"type":"pr-link","sessionId":"fixture-001","prNumber":42,"prUrl":"https://example/pr/42"}
+{"type":"system","subtype":"turn_duration","durationMs":1000}
