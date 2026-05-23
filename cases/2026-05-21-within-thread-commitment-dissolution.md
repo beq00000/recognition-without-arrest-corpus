@@ -10,6 +10,7 @@
 - **Operator:** @beq00000
 - **Agent:** Claude Opus 4.7 (1M context), under operator scaffolding throughout
 - **Substrate examined:** Agent's full session transcript JSONL, ~3.9 MB / 1352 lines, processed via Python and grep over the agent's own tool history
+- **Filed as constellation member:** [anthropics/claude-code#61388](https://github.com/anthropics/claude-code/issues/61388) (2026-05-22) — *Prior-turn agent commitments are silently dropped on operator task-shift unless explicitly re-anchored*. RUSE Surface 4 / CVH Chapter 7 Family 1c in @yurukusa's cross-taxonomy.
 
 ## Redaction map
 
