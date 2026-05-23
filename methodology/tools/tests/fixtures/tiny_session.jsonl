@@ -1,0 +1,10 @@
+{"type":"permission-mode","permissionMode":"acceptEdits","sessionId":"fixture-001"}
+{"type":"file-history-snapshot","messageId":"x","snapshot":{},"isSnapshotUpdate":false}
+{"type":"user","uuid":"u-1","timestamp":"2026-05-23T10:00:00.000Z","message":{"role":"user","content":"please refactor the validator"}}
+{"type":"assistant","uuid":"a-1","timestamp":"2026-05-23T10:00:01.000Z","message":{"role":"assistant","content":[{"type":"thinking","thinking":"Let me think about this. while true; do ...; sleep 5; done would not be appropriate."},{"type":"text","text":"On it."},{"type":"tool_use","id":"tu-1","name":"Read","input":{"file_path":"/x.rs"}}]}}
+{"type":"user","uuid":"u-2","timestamp":"2026-05-23T10:00:02.000Z","message":{"role":"user","content":"<system-reminder>\nThe task tools haven't been used recently.\n</system-reminder>"}}
+{"type":"assistant","uuid":"a-2","timestamp":"2026-05-23T10:00:03.000Z","message":{"role":"assistant","content":[{"type":"text","text":"I notice you asked about something. echo \"=== separator ===\""},{"type":"tool_use","id":"tu-2","name":"Bash","input":{"command":"ls -la"}},{"type":"tool_use","id":"tu-3","name":"Bash","input":{"command":"grep foo bar.txt"}}]}}
+{"type":"user","uuid":"u-3","timestamp":"2026-05-23T10:00:04.000Z","message":{"role":"user","content":"echo? really?"}}
+{"type":"ai-title","title":"fixture session"}
+{"type":"assistant","uuid":"a-3","timestamp":"2026-05-23T10:00:05.000Z","message":{"role":"assistant","content":[{"type":"text","text":"Caught. Will not echo via Bash again."}]}}
+{"type":"user","uuid":"u-4","timestamp":"2026-05-23T10:00:06.000Z","message":{"role":"user","content":"Doesn't consistency inherently reduce cognitive load on external pairs of eyes?"}}

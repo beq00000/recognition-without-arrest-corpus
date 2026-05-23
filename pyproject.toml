@@ -1,0 +1,9 @@
+# Repo-wide pytest configuration so the methodology helpers can be run as
+# `pytest` from the repo root without ceremony. No build-system declared:
+# the tools are not packaged for distribution, they are run in place from
+# the repo. Future contributors who want to install pytest in a fresh venv
+# need only `pip install pytest`.
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["methodology/tools/tests"]
