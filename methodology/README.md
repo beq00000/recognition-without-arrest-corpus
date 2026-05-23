@@ -93,6 +93,14 @@ Runtime-side defences operationalising the corpus's observations:
 
 The three suites compose. `no-vibes` runs hot all session (passive, vocabulary-grammar), `no-unreachable-symbol` runs at the Stop boundary (passive, git-diff-grammar), `verify-before-stop` runs at the Stop boundary (active, log-file ground truth). *"They don't interfere; they triangulate."* — [@ianymu on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4499361129).
 
+## Methodology tooling
+
+The corpus's cases derive quantitative measurements — tool-call counts, per-record-type counts, regex pattern counts over agent emissions and Bash tool inputs, Socratic-narrowing rate signatures — from session transcripts. Earlier cases derived these ad-hoc per-case; the typed library at [`tools/`](tools/) lifts the parsing, counting, and candidate surfacing into a reusable substrate so future cases inherit the work rather than re-deriving it.
+
+Scope: retrospective analysis of completed Claude Code session JSONLs at `~/.claude/projects/<project-slug>/<session-uuid>.jsonl`. Deterministic parsing and regex, matching the *"out-of-loop, deterministic, code-not-model"* principle that runs through the cluster's defences. Distinct from the hook-shipping cluster above which gates emission during live sessions.
+
+See [`tools/README.md`](tools/README.md) for the module set, usage examples, and extension instructions.
+
 ## The MAST 3.3 anchor
 
 The corpus's external academic handle is MAST mode 3.3 ("No or Incorrect Verification") from [Cemri et al., NeurIPS 2025 (arXiv:2503.13657)](https://arxiv.org/abs/2503.13657). The three-stage decomposition the cluster has converged on (Recognition → Articulation → Non-gating) gives MAST mode 3.3 a failure-mechanism decomposition the original paper does not provide; MAST mode 3.3 gives the cluster a published evaluation handle. The cross-link was made by [@waitdeadai on #60451](https://github.com/anthropics/claude-code/issues/60451#issuecomment-4489749993).
