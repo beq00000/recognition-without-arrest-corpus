@@ -77,10 +77,18 @@ class Record:
 
     @property
     def is_user(self) -> bool:
+        """True if this record is a user-role record.
+
+        User-role records cover three substrates in real transcripts:
+        operator messages, tool_result blocks from Claude Code's
+        tool-call cycle, and (on some versions) system-reminder
+        injections. The narrower properties below disambiguate.
+        """
         return self.type == "user"
 
     @property
     def is_assistant(self) -> bool:
+        """True if this record is an assistant-role record (agent emission)."""
         return self.type == "assistant"
 
     @property
@@ -166,7 +174,7 @@ def parse(
     ``lineno`` attribute (which the json module already populates).
     """
     path = Path(path)
-    with path.open() as f:
+    with path.open(encoding="utf-8") as f:
         for line_no, raw_line in enumerate(f, start=1):
             raw_line = raw_line.strip()
             if not raw_line:

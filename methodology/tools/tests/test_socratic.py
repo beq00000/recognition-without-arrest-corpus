@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from methodology.tools import socratic, transcript
+from methodology.tools.socratic import _SINGLE_WORD_CALLOUT_RE
 
 FIXTURE = Path(__file__).parent / "fixtures" / "tiny_session.jsonl"
 
@@ -62,7 +63,6 @@ def test_single_word_callouts_filter():
 
 def test_single_word_callout_detector_on_synthetic_messages():
     """Verify the detector against the worked-example callout forms."""
-    from methodology.tools.socratic import _SINGLE_WORD_CALLOUT_RE
     assert _SINGLE_WORD_CALLOUT_RE.match("echo?") is not None
     assert _SINGLE_WORD_CALLOUT_RE.match("awk?") is not None
     assert _SINGLE_WORD_CALLOUT_RE.match("xargs?") is not None

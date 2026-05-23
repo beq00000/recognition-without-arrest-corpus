@@ -1,9 +1,37 @@
-# Repo-wide pytest configuration so the methodology helpers can be run as
-# `pytest` from the repo root without ceremony. No build-system declared:
-# the tools are not packaged for distribution, they are run in place from
-# the repo. Future contributors who want to install pytest in a fresh venv
-# need only `pip install pytest`.
+# Repo-wide test + lint configuration. The methodology helpers are run in
+# place from the repo (no packaging, no build-system declared). Future
+# contributors install the dev tools in a fresh venv via:
+#
+#     python3.11 -m venv .venv
+#     .venv/bin/pip install pytest pylint bandit
+#
+# CI is not configured for this repo; pytest / pylint / bandit are
+# available as local discipline, not enforced.
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["methodology/tools/tests"]
+
+[tool.pylint.main]
+# Tell pylint about the repo root so test files can resolve
+# `from methodology.tools import X` — otherwise pylint reports
+# import-error on every test file even though pytest passes.
+init-hook = 'import sys; sys.path.insert(0, ".")'
+
+[tool.pylint."messages control"]
+disable = [
+    # `Record` is an analysis-surface dataclass — its 8 fields are
+    # intentional, not a sign of needing refactor.
+    "too-many-instance-attributes",
+]
+
+[tool.pylint.basic]
+# Test function names are documentation; don't require docstrings on them.
+no-docstring-rgx = "^(test_|_).*"
+
+[tool.bandit]
+# `assert` in test files is the test mechanism; bandit B101 is correct
+# to flag in production code but is a false positive across tests/.
+# Excluding the tests directory entirely keeps bandit focused on
+# library code where its warnings are load-bearing.
+exclude_dirs = ["methodology/tools/tests"]

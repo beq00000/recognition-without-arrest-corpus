@@ -54,5 +54,5 @@ def test_per_assistant_record_counts_are_in_order():
 
 def test_count_by_tool_returns_empty_counter_for_no_records():
     """Empty input → empty counter (not None, not error)."""
-    assert tool_calls.count_by_tool([]) == {}
+    assert not tool_calls.count_by_tool([])
     assert tool_calls.total_tool_uses([]) == 0

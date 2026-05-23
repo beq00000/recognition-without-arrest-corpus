@@ -32,13 +32,25 @@ code-not-model"* principle.
 Tools live in place; nothing is built or installed.
 
 ```bash
-pip install pytest          # one-time, into venv of choice
-pytest                      # runs the suite from repo root
+# One-time per fresh checkout (CI is not configured for this repo —
+# these are local-discipline tools, not enforced):
+python3.11 -m venv .venv
+.venv/bin/pip install pytest pylint bandit
+
+# Tests
+.venv/bin/pytest
+
+# Lint + static analysis (run on demand; not gated)
+.venv/bin/pylint methodology/tools/
+.venv/bin/bandit -r methodology/tools/ -c pyproject.toml
 ```
 
-`pyproject.toml` at the repo root configures pytest with
-`pythonpath = ["."]` so `from methodology.tools import X` resolves
-without ceremony.
+`pyproject.toml` at the repo root configures all three: pytest with
+`pythonpath = ["."]` so `from methodology.tools import X` resolves;
+pylint with an init-hook that adds the repo root to sys.path so the
+test files' imports resolve under lint too; bandit excluding the
+tests directory (`assert` is the test mechanism — bandit B101 is a
+true positive in production code but a false positive across tests/).
 
 ## Usage
 

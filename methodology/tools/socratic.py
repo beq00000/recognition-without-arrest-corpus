@@ -85,7 +85,7 @@ def candidates(
 
 
 def by_compression(
-    candidates: Iterable[SocraticCandidate],
+    cands: Iterable[SocraticCandidate],
 ) -> list[SocraticCandidate]:
     """Sort candidates by length ascending — shortest (most compressed) first.
 
@@ -93,11 +93,11 @@ def by_compression(
     rate signature with single-word callouts at the bottom of the
     chronological list and at the top of the compression-ranked view.
     """
-    return sorted(candidates, key=lambda c: c.length)
+    return sorted(cands, key=lambda c: c.length)
 
 
 def single_word_callouts(
-    candidates: Iterable[SocraticCandidate],
+    cands: Iterable[SocraticCandidate],
 ) -> list[SocraticCandidate]:
     """Filter to single-word + ``?`` candidates only.
 
@@ -105,4 +105,4 @@ def single_word_callouts(
     *"xargs?"* — single-word callouts at the gradient boundary that
     surfaced rule-implied tool-call edges one at a time.
     """
-    return [c for c in candidates if c.is_single_word_callout]
+    return [c for c in cands if c.is_single_word_callout]
