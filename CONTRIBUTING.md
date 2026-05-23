@@ -48,6 +48,24 @@ Per [#60234](https://github.com/anthropics/claude-code/issues/60234), the failur
 
 Naming, framings, evidence, observations, and hypotheses are credited to specific contributors with links to the canonical source. The cluster's coherence depends on every contribution being able to extend the prior work without invalidating it (the monotonic-CRDT property @Ilya0527 named). When extending, attribute; when challenging, attribute the position being challenged; when reframing, attribute the prior frame.
 
+## Methodological footnotes
+
+These are calibration lessons that emerge from specific cases and apply forward to future cases. Each names the principle, the case that surfaced it, and the discipline that follows.
+
+### Metric calibration across registers
+
+A structural-pattern regex calibrated against one session-register may invert its diagnostic signal in another. The principle generalises outside any specific metric: when a quantitative measurement is calibrated against one phase's register and applied to a phase whose register differs materially, the metric's false-positive (or false-negative) rate may shift such that the headline number stops meaning what the calibration claimed.
+
+Discipline:
+
+- **Sample and verify.** When applying a structural-pattern regex (or any metric calibrated against textual signatures) across a register different from the calibration substrate, sample n≥8 matches and verify the false-positive rate by hand.
+- **Surface the discrepancy explicitly in the case.** A methodology footnote with the sample counts and assessed false-positive rate lets readers calibrate the headline metric.
+- **Do not collapse to the raw number** when the register-mismatch is visible.
+
+Worked example: the pseudo-check-in regex in the [2026-05-21 case](cases/2026-05-21-within-thread-commitment-dissolution.md), calibrated against implementation-heavy closeout phases, over-includes real questions in collaborative-analytical phases (n=8 sample: 6 real, 1 pseudo, 1 mixed). The case surfaces the sample-and-verify result; the headline density is reported with the calibration caveat in place.
+
+Cluster context: this is structurally identical to MAST mode 2.6 measurement variance (recall ceiling 0.153 on n=954 LLM-judge labels) per @waitdeadai's synthesis writeup §6.2 [in flight at ianymu/recognition-without-arrest#1](https://github.com/ianymu/recognition-without-arrest/pull/1). Promotion from per-case caveat to methodological footnote follows @yurukusa's recommendation on [#60977](https://github.com/anthropics/claude-code/issues/60977).
+
 ## Promotion criteria — incident to case
 
 Promotion from `incidents/` (an issue) to `cases/` (a standalone markdown file) is based on:
