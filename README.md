@@ -30,7 +30,11 @@ The shared practice is *kaizen*: each incident is data, each defence is a hypoth
 
 ## How to contribute
 
-Create an incident via the [incident report issue template](.github/ISSUE_TEMPLATE/incident-report.yml). The template asks for the structural fields the corpus has converged on. Fill in what is relevant; mark what is omitted under confidentiality. Incidents land in `incidents/` (as issues). Cases that earn it, by criteria documented in [CONTRIBUTING.md](CONTRIBUTING.md), are promoted to `cases/` as standalone markdown files. If you think the issue is ready to be a case, commit it in the cases/ folder. If it is not quite case shapred, but think it may be useful to others, commit in the incidents/ folder. Either way, please raise a PR.
+**Fork the repo and raise a PR adding a markdown file.** Incidents land at `incidents/YYYY-MM-DD-<short-tag>.md`; cases land at `cases/YYYY-MM-DD-<short-tag>.md` (use `cases/` only if you think the entry meets the [promotion criteria in CONTRIBUTING.md](CONTRIBUTING.md#promotion-criteria--incident-to-case); otherwise `incidents/`, and the maintainer may later promote).
+
+The [incident report template](.github/ISSUE_TEMPLATE/incident-report.yml) shows the structural fields the corpus has converged on — carry them into the markdown body as the spine. Fill in what is relevant; mark what is omitted under confidentiality. Shape is a guide, not a contract.
+
+The issue template still exists as a fallback for contributors who can't or won't raise a PR — but the maintainer will not transcribe issues to files (operator-side transcription burden is the failure mode the corpus documents, per [#60506](https://github.com/anthropics/claude-code/issues/60506)). If you file an issue, please convert it to a file PR yourself when ready.
 
 If you would rather discuss before filing, open a discussion. If you would rather not file at all, the constellation's existing thread comments remain a valid contribution surface — this repository is additive, not a replacement.
 

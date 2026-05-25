@@ -4,11 +4,11 @@ This document describes the practice the corpus has converged on. It is not a sp
 
 ## How a contribution lands
 
-1. **Open an incident** via the [incident report issue template](.github/ISSUE_TEMPLATE/incident-report.yml). The structured fields are the ones the corpus has found load-bearing; fill in what is relevant; mark what is redacted.
-2. **The incident is the issue.** Issues are the corpus's primary surface. Search across them, label them, cross-reference them, comment on them. A new incident may be similar enough to an existing one that it lands as a comment, not a new issue; the existing-incident's filer or the maintainer makes that call.
-3. **Some incidents become cases.** Promotion to [`cases/`](cases/) is the maintainer's judgment based on the criteria below. Promotion means: the case is written up as a standalone markdown file, with redactions complete, attributions full, cross-references current. Cases are findable independently of the issue tracker.
+1. **File an incident as a markdown file PR.** Fork the repo, add `incidents/YYYY-MM-DD-<short-tag>.md`, raise a PR. Use the structural fields from the [incident report template](.github/ISSUE_TEMPLATE/incident-report.yml) as the body's spine; treat the shape as a guide, not a contract.
+2. **Cases earn promotion.** When an incident meets the [promotion criteria](#promotion-criteria--incident-to-case) below, the maintainer moves the file from `incidents/` to `cases/` (a `git mv` plus any sharpening the maintainer judges necessary).
+3. **The issue template is the fallback** for contributors who can't or won't raise a PR. The maintainer will not transcribe issues to files — that's the operator-side mitigation-curve failure mode the corpus documents ([#60506](https://github.com/anthropics/claude-code/issues/60506)). If you file an issue, please convert it to a file PR yourself when ready.
 
-Most incidents will remain issues. The promotion to `cases/` is not the goal; it is the mechanism for surfacing examples that have earned a standalone treatment.
+Most incidents will sit in `incidents/`; some earn promotion to `cases/`. Promotion is the mechanism for surfacing examples that have earned standalone treatment; it is not the goal.
 
 ## The practice
 
@@ -68,7 +68,7 @@ Cluster context: this is structurally identical to MAST mode 2.6 measurement var
 
 ## Promotion criteria — incident to case
 
-Promotion from `incidents/` (an issue) to `cases/` (a standalone markdown file) is based on:
+Promotion from `incidents/` to `cases/` (both are markdown files; promotion is a `git mv` plus any maintainer-judged sharpening) is based on:
 
 - The incident is detailed enough to stand alone — a reader landing on the case markdown can understand the failure shape without backreading the issue.
 - The redactions are complete and the redaction notes are clear.
@@ -76,7 +76,7 @@ Promotion from `incidents/` (an issue) to `cases/` (a standalone markdown file) 
 - Cross-references are current — to the constellation members the case touches, to prior cases that established the shape, to hook-shipping work that addresses or could address it.
 - The case adds something to the corpus that the existing cases do not.
 
-A case may sit as an issue indefinitely without being promoted. Promotion is not a quality threshold; it is a discoverability and durability decision.
+An incident may sit in `incidents/` indefinitely without being promoted. Promotion is not a quality threshold; it is a discoverability and durability decision.
 
 ## The maintainer's discretion
 

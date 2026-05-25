@@ -6,9 +6,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for filing. Please fill in what is relevant to your case. Fields marked optional may be omitted under confidentiality constraints — note the omission in **Redaction notes** at the end.
+        **Prefer a PR.** The corpus's primary surface is markdown files in [`incidents/`](https://github.com/beq00000/recognition-without-arrest-corpus/tree/main/incidents) (or [`cases/`](https://github.com/beq00000/recognition-without-arrest-corpus/tree/main/cases) for promotion-ready entries), raised as PRs. Fork the repo, add `incidents/YYYY-MM-DD-<short-tag>.md` using the structural fields below as the body's spine, raise a PR. The maintainer will not transcribe issues to files — that's the operator-side mitigation-curve failure mode the corpus documents ([#60506](https://github.com/anthropics/claude-code/issues/60506)). If you proceed with the issue path anyway, please convert it to a file PR yourself when ready.
 
         If your case meets the [five conceits](https://gist.github.com/beq00000/46e131f359f3b32662740d5dca7d0761) of a constellation member, consider filing against [`anthropics/claude-code`](https://github.com/anthropics/claude-code/issues/new) instead, with a cross-reference here.
+
+        Thank you for filing. Please fill in what is relevant to your case. Fields marked optional may be omitted under confidentiality constraints — note the omission in **Redaction notes** at the end.
 
   - type: dropdown
     id: session-shape
