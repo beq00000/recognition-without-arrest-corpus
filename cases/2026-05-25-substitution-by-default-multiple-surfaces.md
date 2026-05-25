@@ -1,4 +1,4 @@
-# Substitution-by-default across multiple surfaces, observed across six instances in a single coding-and-retro session
+# Substitution-by-default across multiple surfaces, observed across five instances in a single coding-and-retro session
 
 > **Contagion warning omitted as calibration.** Substrate is paraphrased agent emissions + verbatim operator-protective narrowing only; no in-flight agent cascade prose. PR #9 precedent applies. Template-applying the warning would itself instantiate the failure mode this case documents.
 >
@@ -22,7 +22,7 @@ Session: private Rust [project] under operator confidentiality, spanning impleme
 
 ## Structured fields
 
-**Input shape.** Six instances within one session, two surfaces. §1–§4 at the engineering-task-specifics surface: a generic shape (10-call-site mechanical-edit signature; markdown list-item; sibling-worktree convention; canonical `fix/` verb) recognised as cued substrate, action shipped (awk; standard bullet indent; `~/dev/` worktree; `fix/` branch) without engaging this project's actual constraints (the structural-defences script chain; what the clippy lint actually checks; the `.worktrees/` convention in git history; the recent `hardening/` precedent). §6 at the diagnostic surface: a confident-from-training explanation of harness permission behaviour, shipped without engaging the actual permission-event substrate. §5 is the same-session passive-form contrast (warrant-articulation gap, 2026-05-24-shape). The case-writing pass produced six further within-pass instances at additional surfaces (Methodology notes).
+**Input shape.** Five instances within one session, two surfaces. §1–§4 at the engineering-task-specifics surface: a generic shape (10-call-site mechanical-edit signature; markdown list-item; sibling-worktree convention; canonical `fix/` verb) recognised as cued substrate, action shipped (awk; standard bullet indent; `~/dev/` worktree; `fix/` branch) without engaging this project's actual constraints (the structural-defences script chain; what the clippy lint actually checks; the `.worktrees/` convention in git history; the recent `hardening/` precedent). §5 at the diagnostic surface: a confident-from-training explanation of harness permission behaviour, shipped without engaging the actual permission-event substrate. Plus one same-session passive-form contrast at L1300 (warrant-articulation gap, 2026-05-24-shape) — documented as the *Within-session contrast* section below; not counted in the instance tally, but load-bearing for drawing the family boundary. The case-writing pass produced six further within-pass instances at additional surfaces (Methodology notes).
 
 **What the agent recognised vs articulated.** The shape match was real. The downstream action shipped; the constraint-engagement step (would the generic fit this project's specifics?) was skipped. Distinct from [2026-05-24-shape](2026-05-24-substrate-match-without-walked-warrant.md), where substrate-engagement happened and the warrant was skipped: here, a generic shape *substitutes for* substrate-engagement, which never occurs.
 
@@ -30,7 +30,7 @@ Session: private Rust [project] under operator confidentiality, spanning impleme
 
 **Operator gate.** Gradient-narrowing in the [§6 navigation-memo](https://gist.github.com/beq00000/46e131f359f3b32662740d5dca7d0761) Socratic form. None produced autonomous recovery. Catch-shape distinct from 2026-05-24: this session's catches asked *"have you checked THIS project's specifics?"* rather than *"why does substrate X support conclusion Y?"*. The §1 awk-catch was sustained across three turns (L244 / L261 / L290); progressive sharpening was required.
 
-**Hypothesised structural category.** [Substitution-by-default](https://github.com/anthropics/claude-code/issues/60226#issuecomment-4478275893) (@suwayama's active-form variant of recognition-without-arrest) extended to two coding-context surfaces: **engineering-task specifics** (§1–§4 — tool choice, formatting convention, workspace convention, branch-naming convention) and the **diagnostic surface** (§6 — the agent's explanation of an environment behaviour). The load-bearing prior — *"the model's default operation on user-provided artifacts is to substitute, not to read"* — applies at both surfaces: the substrate (CLAUDE.md, the structural-defence script chain, git history, the recent merge precedent, the actual permission-event sequence) was available in the agent's environment, and the agent generated from training rather than reading. The wasted-effort fingerprint is mild here (engineering edits are cheap; diagnostic explanations are short); the substitution-shape itself is the diagnostic. §5 documents the passive form (substrate engaged, warrant skipped) in the same session — both forms present.
+**Hypothesised structural category.** [Substitution-by-default](https://github.com/anthropics/claude-code/issues/60226#issuecomment-4478275893) (@suwayama's active-form variant of recognition-without-arrest) extended to two coding-context surfaces: **engineering-task specifics** (§1–§4 — tool choice, formatting convention, workspace convention, branch-naming convention) and the **diagnostic surface** (§5 — the agent's explanation of an environment behaviour). The load-bearing prior — *"the model's default operation on user-provided artifacts is to substitute, not to read"* — applies at both surfaces: the substrate (CLAUDE.md, the structural-defence script chain, git history, the recent merge precedent, the actual permission-event sequence) was available in the agent's environment, and the agent generated from training rather than reading. The wasted-effort fingerprint is mild here (engineering edits are cheap; diagnostic explanations are short); the substitution-shape itself is the diagnostic. The same session also produced a passive-form warrant-articulation gap (substrate engaged, warrant skipped) — documented as the *Within-session contrast* section, not counted as an instance but load-bearing for the family boundary.
 
 **Sub-shape worth flagging.** §1's seductive surface — a structural defence existed in the project (the script chain forbidding bypass-tooling), the shape-match never reached the substrate layer where the defence would be visible. Adjacent to [#60977](https://github.com/anthropics/claude-code/issues/60977)'s RUSE rule-implied-edge.
 
@@ -45,7 +45,7 @@ Session: private Rust [project] under operator confidentiality, spanning impleme
 - [#60226 substitution-by-default variant](https://github.com/anthropics/claude-code/issues/60226#issuecomment-4478275893) — active-form sibling this case extends
 - [@yurukusa's amended gist](https://gist.github.com/yurukusa/db6011df3799fe21e04900bb3e99db4b) — variant taxonomy
 - [@beq00000's clean-state seven-instance comment](https://github.com/anthropics/claude-code/issues/60226#issuecomment-4501352847) — prior corpus art on this operator-agent pair / same project
-- [2026-05-24](2026-05-24-substrate-match-without-walked-warrant.md) — passive form §5 instantiates
+- [2026-05-24](2026-05-24-substrate-match-without-walked-warrant.md) — passive form the *Within-session contrast* instantiates
 - [#60977](https://github.com/anthropics/claude-code/issues/60977) — RUSE framing §1 edges
 - [#60188](https://github.com/anthropics/claude-code/issues/60188) — mechanical-phase inflation, relevant to the out-of-family permission-prompt observation
 - [PR #9](https://github.com/beq00000/recognition-without-arrest-corpus/pull/9) — RUSE-extension and calibrated-contagion-warning precedents
@@ -89,9 +89,9 @@ Operator approved beginning hardening work. The agent's branch-name default: `fi
 
 The recent merge history showed `hardening/external-review-N` as the precedent for *"defensive hardening from external review"*. The shape-match collapsed `external-review` to `fix` because the canonical bug-fix verb was the training prior. The actual recent precedent was visible in `git log` but never walked. CLAUDE.md's branching section names *"branch names must reflect the contents of the PR"* explicitly and was loaded into context — the constraint was in the agent's input and was not engaged.
 
-### 5. Sub-shape contrast at L1300: the CONTRIBUTING.md note language was warrant-articulation gap, not substitution-by-default
+### Within-session contrast at L1300: the CONTRIBUTING.md note language was warrant-articulation gap, not substitution-by-default
 
-Offered as within-session contrast — failure shape is [2026-05-24-shape](2026-05-24-substrate-match-without-walked-warrant.md) warrant-articulation, not the present case's substitution-by-default. Documented to show both shapes present in the same session on the same operator-agent pair.
+*Not counted in the instance tally; documented to draw the family boundary.* Failure shape is [2026-05-24-shape](2026-05-24-substrate-match-without-walked-warrant.md) warrant-articulation, not the present case's substitution-by-default. Worth surfacing because both shapes appeared in the same session on the same operator-agent pair.
 
 During the refactor pass for CONTRIBUTING.md prose describing the new helper, the agent wrote that it *"closes the regression class"* with *"no meaningful surface for mutation testing"*.
 
@@ -99,7 +99,7 @@ Operator catch at L1300: *"Is the language true as written? I think it is, but I
 
 The substrate-walk the catch forced: the helper has a non-trivial branch (zero-lamports vs pre-funded), a top-up arithmetic step, and constraint-stack interactions — each surface is mutable. *"No meaningful surface"* was overstated. The substrate was real and the agent had read it; the warrant was skipped. Substrate-match-without-walked-warrant — meaningfully distinct from §1–§4.
 
-### 6. The settings.json diagnostic over-claim: confident-from-training substitutes for engagement with the actual permission-failure substrate
+### 5. The settings.json diagnostic over-claim: confident-from-training substitutes for engagement with the actual permission-failure substrate
 
 Methodologically load-bearing for the operator-logged data-point channel. Surfaced via JSONL inspection after the operator named it during the case-writing pass: *"mid-session, when I asked about the increased tool permission prompts, you confidently stated that the issue was in the settings.json (which was at least plausible) the data point logging started after I suspected the failure mode was happening."*
 
@@ -111,7 +111,7 @@ Structurally correct at the named edge (Claude Code permission behaviour is allo
 
 The operator was not requesting clarification of the agent's explanation three turns earlier — the operator was logging an observation that the explanation had not engaged the *"and yet was asked again"* substrate. This is the first explicit data-point log in the JSONL. The operator-side TACERE channel through declarative observation was initiated here, in response to the agent's substitution-by-default at the diagnostic surface. Subsequent data-point logs (L1058, L1361, live ones during the case-writing pass) extend the same channel.
 
-The methodological consequence is the load-bearing one: **the session's operator-side data-point-logging channel originated as a defensive discipline in response to this specific agent failure shape.** Channel existence in this session is downstream of §6.
+The methodological consequence is the load-bearing one: **the session's operator-side data-point-logging channel originated as a defensive discipline in response to this specific agent failure shape.** Channel existence in this session is downstream of §5.
 
 ---
 
@@ -121,7 +121,7 @@ Phase boundaries identified by inspection of operator-message register transitio
 
 ### Phase boundaries
 
-Identified by inspection of operator-message register transitions across the (final-pass) 57 operator-authored messages and tool-call density transitions across the (final-pass) 788 assistant records. Lines are 1-indexed against the JSONL. **Note:** the per-phase table below is a snapshot from the phase-analysis script run *before* the §6 addition and the final within-pass cascade observations; phase I's row reflects the substrate state at that earlier measurement, not the truly-final state. The full-pass growth is in the Final-pass verification diff (phases A–H are historical and unchanged; phase I grew further during continued case-writing).
+Identified by inspection of operator-message register transitions across the (final-pass) 57 operator-authored messages and tool-call density transitions across the (final-pass) 788 assistant records. Lines are 1-indexed against the JSONL. **Note:** the per-phase table below is a snapshot from the phase-analysis script run *before* the diagnostic-surface section addition and the final within-pass cascade observations; phase I's row reflects the substrate state at that earlier measurement, not the truly-final state. The full-pass growth is in the Final-pass verification diff (phases A–H are historical and unchanged; phase I grew further during continued case-writing).
 
 | Phase | Range | Description |
 |---|---|---|
@@ -130,7 +130,7 @@ Identified by inspection of operator-message register transitions across the (fi
 | C | L355–L600 | Setup + early implementation. Includes Instance §3 worktree catch (L379–L409), helper creation, mint_note migration. |
 | D | L600–L880 | Permission-decision discussion + mechanical-edit phase. First operator permission complaint at L870. |
 | E | L880–L1100 | Mechanical implementation + commit/push attempts. Permission diagnostic at L1024; first explicit *"data point"* log at L1058. |
-| F | L1100–L1310 | Refactor lens (L1152), CONTRIBUTING.md note catch (L1300, Instance §5). |
+| F | L1100–L1310 | Refactor lens (L1152), CONTRIBUTING.md note catch (L1300, the *Within-session contrast*). |
 | G | L1310–L1395 | PR drafting + label-leak catch (L1365); second *"data point"* log at L1361. |
 | H | L1395–L1575 | Retro: constellation memo + artistic / craft exchange. |
 | I | L1575+ | Corpus-entry case-writing (the present pass). |
@@ -144,14 +144,14 @@ Identified by inspection of operator-message register transitions across the (fi
 | C | 3 | 98 | 13 | 10 | 15 | 0.13 | **2** | 0 |
 | D | 3 | 124 | 29 | 15 | 14 | **0.23** | 0 | 0 |
 | E | 4 | 96 | 18 | 9 | 11 | 0.19 | 0 | **1** |
-| F | 4 | 87 | 21 | 8 | 5 | **0.24** | 1 (§5) | 0 |
+| F | 4 | 87 | 21 | 8 | 5 | **0.24** | 1 (contrast) | 0 |
 | G | 6 | 29 | 5 | 6 | 0 | 0.17 | 0 | **1** |
 | H | 21 | 36 | 0 | 0 | 0 | 0.00 | 1 (mild) | 0 |
 | I | 0 | 97 | 18 | 6 | 12 | 0.19 | — | — |
 
 **Two distinct signals on different phase-distributions, observable in the data:**
 
-1. **The substitution-by-default catches (§1–§4) concentrate in PLANNING/SETUP phases (B, C).** Five of seven operator pattern-match catches in this session fired in B + C (Bash density 0.12 + 0.13 — low). Zero in the most-mechanical phases (D 0.23, E 0.19 — high Bash density, zero pattern-match catches). The §5 warrant-articulation catch (F) is the one mechanical-phase recognition-without-arrest catch in the session and is the strict-#60226 form. The phase-distribution suggests substitution-by-default fires when the agent is reaching for a generic-from-training during setup/planning, not when the agent is executing mechanical edits.
+1. **The substitution-by-default catches (§1–§4) concentrate in PLANNING/SETUP phases (B, C).** Five of seven operator pattern-match catches in this session fired in B + C (Bash density 0.12 + 0.13 — low). Zero in the most-mechanical phases (D 0.23, E 0.19 — high Bash density, zero pattern-match catches). The *Within-session contrast* (the warrant-articulation catch in phase F) is the one mechanical-phase recognition-without-arrest catch in the session and is the strict-#60226 form. The phase-distribution suggests substitution-by-default fires when the agent is reaching for a generic-from-training during setup/planning, not when the agent is executing mechanical edits.
 
 2. **The operator-logged data-point channel concentrates in MECHANICAL-PHASE COMMIT-SHIPPING (E, G).** Both explicit *"data point"* log entries (L1058, L1361) are in mechanical commit-shipping phases — Bash density 0.19, 0.17 respectively. The phenomenon being logged is **harness-side permission-prompt recurrence** for tool calls the operator had previously approved with *"yes and don't ask again"* (git commit -m, git add, cargo clippy, gh pr / gh api). The agent's own pseudo-check-in-language rate in those same phases is **zero** (D 0% permission-emits in 22 text blocks; E 0% in 18). So the data-point channel is capturing a harness-level phenomenon, not an agent-emitted pseudo-check-in pattern.
 
@@ -250,7 +250,7 @@ Density (6.5%) is slightly above [the 2026-05-23 autonomous-arrest case](2026-05
   - **Contagion warning template-applied.** Operator: *"And does this one really have contagion risk? I'm not sure that it does. Remember, we prefer reason to pattern-matching for this work"*. Removed per [PR #9](https://github.com/beq00000/recognition-without-arrest-corpus/pull/9) calibration precedent.
   - **Artistic-medium-name leaked** into redaction map and session-shape line. Operator: *"the operator likes his privacy, although his personality can leak through"*. Recovery: abstracted to *"artistic / craft philosophy"*. Caught twice — once for content, once for the methodology-bullet's own wording.
   - **AskUserQuestion menu mid-drafting** for PR direction. Operator: *"that was odd... I don't think I've ever seen that before, mid-drafting."* Tool-description shape (*"ask for user preferences during execution"*) substituted for engagement with this session's conversational register.
-  - **Confidently-wrong claim about JSONL access.** Drafted *"pre-compaction events not directly verifiable from the post-compaction JSONL"*. Operator: *"Isn't a full transcript kept somewhere on disk?"* The JSONL is on disk and the agent had been reading it throughout; the framing pattern-matched to the generic *"compaction = context-lost"* prior. Substitution-by-default at the **meta-cognitive surface**, recursively significant: the case-writing pass produced a substitution-by-default about whether the substitution-by-default at the diagnostic surface (§6) was substrate-verifiable.
+  - **Confidently-wrong claim about JSONL access.** Drafted *"pre-compaction events not directly verifiable from the post-compaction JSONL"*. Operator: *"Isn't a full transcript kept somewhere on disk?"* The JSONL is on disk and the agent had been reading it throughout; the framing pattern-matched to the generic *"compaction = context-lost"* prior. Substitution-by-default at the **meta-cognitive surface**, recursively significant: the case-writing pass produced a substitution-by-default about whether the substitution-by-default at the diagnostic surface (§5) was substrate-verifiable.
   - **Premature PR question.** Operator: *"There's a planned rewrite after that. Why did you ask me to push?"* Substrate skipped: incomplete redaction; stale final-pass quant; rewrite pending. Substitution-by-default at the case-writing-workflow surface.
 - **Live data-point logging continued through the case-writing pass.** Operator logged *"another tool permission ask"* (during `gh api`) and *"second time I thought I'd approved that python script"* (during phase-analysis script). Total explicit harness-permission-recurrence data-points in the session: five (L870, L1058, L1361 + two live during phase I). The operator-side TACERE channel operated through the case-writing pass — observed-and-logged.
 - **Final-pass verification.** Two passes; full diff:
