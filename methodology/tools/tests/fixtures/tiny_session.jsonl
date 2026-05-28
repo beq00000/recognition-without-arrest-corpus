@@ -11,3 +11,5 @@
 {"type":"user","uuid":"u-5","timestamp":"2026-05-23T10:00:07.000Z","message":{"role":"user","content":[{"tool_use_id":"tu-2","type":"tool_result","content":"total 0\ndrwxr-xr-x ..."}]}}
 {"type":"pr-link","sessionId":"fixture-001","prNumber":42,"prUrl":"https://example/pr/42"}
 {"type":"system","subtype":"turn_duration","durationMs":1000}
+{"type":"attachment","uuid":"att-1","timestamp":"2026-05-23T10:00:08.000Z","attachment":{"type":"queued_command","prompt":"Wait — shouldn't we verify the budget first?"}}
+{"type":"attachment","uuid":"att-2","timestamp":"2026-05-23T10:00:09.000Z","attachment":{"type":"selected_text","text":"a pasted snippet, not an operator message"}}

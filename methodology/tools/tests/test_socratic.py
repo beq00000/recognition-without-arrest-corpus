@@ -17,11 +17,12 @@ def test_candidates_surfaces_only_operator_questions():
     - "please refactor the validator" (no ?)
     - "echo? really?"  (ends in ?, contains single-word callout)
     - "Doesn't consistency..." (ends in ?, gradient question)
+    - "Wait — shouldn't we verify the budget first?" (queued command, ends in ?)
     The system-reminder user record never qualifies as operator-authored.
     """
     records = list(transcript.parse(FIXTURE))
     cands = socratic.candidates(records)
-    assert len(cands) == 2
+    assert len(cands) == 3
     texts = [c.text for c in cands]
     assert "echo? really?" in texts
     assert any("Doesn't consistency" in t for t in texts)
@@ -69,3 +70,13 @@ def test_single_word_callout_detector_on_synthetic_messages():
     # Compound forms don't match the strict callout shape.
     assert _SINGLE_WORD_CALLOUT_RE.match("echo? really?") is None
     assert _SINGLE_WORD_CALLOUT_RE.match("is this OK?") is None
+
+
+def test_candidates_include_queued_operator_questions():
+    """A question queued while the agent works (attachment/queued_command)
+    surfaces as a Socratic candidate, same as a turn-boundary question —
+    because socratic.candidates filters on is_operator_message, which now
+    recognises queued commands."""
+    records = list(transcript.parse(FIXTURE))
+    cands = socratic.candidates(records)
+    assert any("budget" in c.text for c in cands)

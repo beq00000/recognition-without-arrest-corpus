@@ -26,6 +26,12 @@ like ``turn_duration``, ``away_summary``, ``compact_boundary``, and
 ``local_command`` — CLAUDE.md and initial context arrive on other
 record surfaces, not as ``type=system``.
 
+Exception: ``attachment`` records whose ``attachment.type`` is
+``queued_command`` carry operator messages typed while the agent was
+working, and are surfaced by default (operator text lifted from
+``attachment.prompt``) — they are operator content, not internal state.
+See ``Record.is_queued_command``.
+
 Records are returned as dataclasses with typed access to the fields
 the analysis modules need. The full raw JSON is retained on each
 record (``raw``) so downstream code can reach for fields the
@@ -95,6 +101,27 @@ class Record:
         return self.type == "assistant"
 
     @property
+    def is_queued_command(self) -> bool:
+        """True if this is a queued operator command — a message the operator
+        typed while the agent was working, stored as an ``attachment`` record
+        with ``attachment.type == "queued_command"`` and the operator text in
+        ``attachment.prompt`` (not ``message.content``).
+
+        These carry genuine operator messages — the operator's mid-turn
+        interjections — and so must not be silently dropped the way other
+        ``attachment`` subtypes are. The class was missed at schema-survey
+        time (the sampled sessions had no queued messages) and surfaced by a
+        reality-check against a live session that did; a named operator marker
+        lived in one.
+        """
+        attachment = self.raw.get("attachment")
+        return (
+            self.type == "attachment"
+            and isinstance(attachment, dict)
+            and attachment.get("type") == "queued_command"
+        )
+
+    @property
     def is_system_reminder(self) -> bool:
         """True if this user-typed record carries a ``<system-reminder>``
         tag in its plain-text content.
@@ -123,8 +150,8 @@ class Record:
 
     @property
     def is_operator_message(self) -> bool:
-        """True if this is a user-typed record with plain-text content
-        that is NOT a system reminder — i.e., authored by the operator.
+        """True if this is an operator-authored message — either a plain-text
+        user record or a queued command — that is NOT a system reminder.
 
         Requires ``text_content`` to be set (string content, not a list
         of content blocks). User records whose content is a list (e.g.,
@@ -133,9 +160,14 @@ class Record:
         because they're the dominant user-record shape in real
         transcripts and an absent exclusion inflates operator-message
         counts by an order of magnitude.
+
+        Queued commands (``is_queued_command``) are operator messages too —
+        their text is lifted from ``attachment.prompt`` into ``text_content``
+        by the parser. Omitting them silently under-counts operator messages
+        in any session where the operator typed while the agent was working.
         """
         return (
-            self.is_user
+            (self.is_user or self.is_queued_command)
             and self.text_content is not None
             and not self.is_system_reminder
         )
@@ -185,7 +217,21 @@ def parse(
             rec_json = json.loads(raw_line)
             rec_type = rec_json.get("type", "unknown")
 
-            if not include_internal and rec_type in _INTERNAL_TYPES:
+            attachment = rec_json.get("attachment")
+            is_queued_command = (
+                rec_type == "attachment"
+                and isinstance(attachment, dict)
+                and attachment.get("type") == "queued_command"
+            )
+
+            # Internal-state records are skipped by default — except queued
+            # commands, which are attachment records carrying genuine operator
+            # messages (mid-turn interjections) and so must surface.
+            if (
+                not include_internal
+                and rec_type in _INTERNAL_TYPES
+                and not is_queued_command
+            ):
                 continue
 
             message = rec_json.get("message")
@@ -200,6 +246,13 @@ def parse(
                     content_blocks = [c for c in content if isinstance(c, dict)]
                 elif isinstance(content, str):
                     text_content = content
+
+            # Queued commands carry their operator text in attachment.prompt,
+            # not message.content — lift it so is_operator_message sees it.
+            if is_queued_command and text_content is None:
+                prompt = attachment.get("prompt")
+                if isinstance(prompt, str):
+                    text_content = prompt
 
             yield Record(
                 line_number=line_no,

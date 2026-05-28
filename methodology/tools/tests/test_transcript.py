@@ -10,13 +10,21 @@ FIXTURE = Path(__file__).parent / "fixtures" / "tiny_session.jsonl"
 
 
 def test_parse_skips_internal_types_by_default():
-    """permission-mode / file-history-snapshot / ai-title are skipped."""
+    """permission-mode / file-history-snapshot / ai-title are skipped.
+
+    The one ``attachment`` that surfaces by default is the queued_command
+    (an operator message); every other internal type — including
+    non-queued attachment subtypes — stays skipped.
+    """
     records = list(transcript.parse(FIXTURE))
     types = [r.type for r in records]
     assert "permission-mode" not in types
     assert "file-history-snapshot" not in types
     assert "ai-title" not in types
-    assert set(types) == {"user", "assistant"}
+    assert set(types) == {"user", "assistant", "attachment"}
+    attachments = [r for r in records if r.type == "attachment"]
+    assert len(attachments) == 1
+    assert attachments[0].is_queued_command
 
 
 def test_parse_include_internal_returns_all_record_types():
@@ -60,9 +68,13 @@ def test_operator_message_distinguishable_from_system_reminder():
     """A bare user message with no system-reminder tag is an operator message."""
     records = list(transcript.parse(FIXTURE))
     operator_messages = [r for r in records if r.is_operator_message]
-    # Fixture: 3 operator messages (the system-reminder user record is not one).
-    assert len(operator_messages) == 3
-    assert all(r.is_user and not r.is_system_reminder for r in operator_messages)
+    # Fixture: 4 operator messages — 3 plain user-record messages plus 1
+    # queued command. The system-reminder user record is not one.
+    assert len(operator_messages) == 4
+    assert all(
+        (r.is_user or r.is_queued_command) and not r.is_system_reminder
+        for r in operator_messages
+    )
 
 
 def test_assistant_record_yields_tool_use_blocks():
@@ -124,3 +136,24 @@ def test_raw_preserved_for_unmodelled_fields():
     first_user = next(r for r in records if r.is_user)
     assert first_user.raw["uuid"] == "u-1"
     assert first_user.raw["timestamp"].startswith("2026-05-23")
+
+
+def test_queued_command_attachment_is_surfaced_as_operator_message():
+    """Queued operator commands (typed while the agent is working) are stored
+    as attachment/queued_command records, not user records — the operator text
+    lives in attachment.prompt. They carry genuine operator messages and must
+    surface. The silent-drop of this class was found by reality-check against a
+    live session whose operator queued messages mid-turn; a named seed marker
+    lived in one (an attention-cost question the tool could not see)."""
+    records = list(transcript.parse(FIXTURE))
+    queued = next(r for r in records if r.is_queued_command)
+    assert queued.is_operator_message is True
+    assert queued.text_content == "Wait — shouldn't we verify the budget first?"
+    assert queued.is_user is False  # structurally an attachment, not a user record
+
+
+def test_non_queued_attachment_still_skipped_by_default():
+    """Only queued_command attachments surface; other attachment subtypes stay
+    internal/skipped, so the operator-message surface isn't re-inflated."""
+    records = list(transcript.parse(FIXTURE))
+    assert not any(r.type == "attachment" and not r.is_queued_command for r in records)

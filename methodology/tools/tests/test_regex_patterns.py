@@ -33,8 +33,8 @@ def test_operator_text_excludes_system_reminders():
     """Operator-authored messages only; the system-reminder record drops out."""
     records = list(transcript.parse(FIXTURE))
     messages = list(regex_patterns.operator_text(records))
-    # 3 operator messages in fixture.
-    assert len(messages) == 3
+    # 4 operator messages in fixture: 3 plain user records + 1 queued command.
+    assert len(messages) == 4
     assert all("<system-reminder>" not in m for m in messages)
 
 
