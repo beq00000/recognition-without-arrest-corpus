@@ -15,13 +15,16 @@ subset is load-bearing for analysis:
 * ``assistant`` — agent message. ``message.content`` is a list of
   content blocks, each typed (``text``, ``thinking``, ``tool_use``,
   ``tool_result``).
-* ``system``    — system-level message; usually CLAUDE.md or initial
-  context. Rare per session.
 
 Internal types (``permission-mode``, ``file-history-snapshot``,
-``ai-title``, ``last-prompt``, ``queue-operation``, ``attachment``)
-are not load-bearing for the corpus's analyses and are skipped by
-default. Pass ``include_internal=True`` to surface them.
+``ai-title``, ``last-prompt``, ``queue-operation``, ``attachment``,
+``pr-link``, ``system``) are not load-bearing for the corpus's
+analyses and are skipped by default. Pass ``include_internal=True``
+to surface them. ``system`` here is operational metadata, not session
+context: surveyed against real transcripts it carries only subtypes
+like ``turn_duration``, ``away_summary``, ``compact_boundary``, and
+``local_command`` — CLAUDE.md and initial context arrive on other
+record surfaces, not as ``type=system``.
 
 Records are returned as dataclasses with typed access to the fields
 the analysis modules need. The full raw JSON is retained on each
