@@ -3,3 +3,14 @@
 *.swo
 HANDOFF.md
 notes/
+
+# Python build artefacts produced by importing the methodology tools.
+__pycache__/
+*.py[cod]
+*$py.class
+
+# pytest cache
+.pytest_cache/
+
+# Local virtualenv for lint / test tooling (pylint, bandit, pytest).
+.venv/
