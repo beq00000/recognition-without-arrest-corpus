@@ -46,6 +46,14 @@ the PR #10 pre-fix shape where the enumeration itself misclassifies a
 member (six sections, one of them a contrast case). Those need a
 reviewer; the corpus convention that resolves them is raw-vs-post-skip
 relabelling and the substrate-of-record declaration.
+
+Known assumption (named by @waitdeadai in the PR #14 review):
+``claim-vs-bullets`` treats a section's prose count and its top-level
+bullets as the same enumeration. A future ``###`` section carrying a
+prose count plus an unrelated >=3-item bullet list would false-fire;
+the fences (###-only, cross-case-date abstention, <3-bullet abstention)
+hold on the live corpus, and a stray false positive lands in the
+visible KNOWN_FINDINGS baseline rather than silently blocking.
 """
 
 from __future__ import annotations
