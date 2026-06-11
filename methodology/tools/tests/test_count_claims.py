@@ -335,18 +335,15 @@ def test_delta_column_drift_is_found():
 # --- the corpus itself: live negatives and a real historical positive ---
 
 
-# Findings the checker's first full-corpus run surfaced in already-merged
-# cases, pending reconciliation against the session substrate (which only
-# the operator holds). Each entry pins the exact finding so any NEW drift
-# still fails the contract; the reconciliation commit removes the entry.
-KNOWN_FINDINGS: dict[str, list[str]] = {
-    # Per-phase tool distribution, row C: 50+3+8+14+0+0+0 = 75, Total
-    # column states 76. All other rows reconcile exactly. Slipped past
-    # the PR #7 review; surfaced by this checker's first run, 2026-06-11.
-    "2026-05-23-autonomous-recognition-with-arrest-conditions.md": [
-        'row "C": contributors sum to 75 but Total column states 76',
-    ],
-}
+# Findings the checker surfaced in already-merged cases, pending
+# reconciliation against the session substrate. Each entry pins the
+# exact finding so any NEW drift still fails the contract; the
+# reconciliation commit removes the entry. Currently empty — the one
+# finding from the checker's first full-corpus run (the 2026-05-23
+# autonomous case's row C, 75 vs 76) was reconciled by substrate
+# recount on 2026-06-11: a Phase-C ToolSearch call dropped from the
+# per-phase attribution; the Total column was right as shipped.
+KNOWN_FINDINGS: dict[str, list[str]] = {}
 
 
 def test_live_corpus_is_clean():

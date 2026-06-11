@@ -182,7 +182,7 @@ Phase boundaries identified by user-message text in the transcript via inspectio
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
 | A | 12 | 42 | 0 | 0 | 0 | 0 | 0 | 54 |
 | B | 108 | 27 | 39 | 4 | 5 | 5 | 1 | 189 |
-| C | 50 | 3 | 8 | 14 | 0 | 0 | 0 | 76 |
+| C | 50 | 3 | 8 | 14 | 0 | 0 | 1 | 76 |
 | D | 13 | 0 | 10 | 0 | 0 | 0 | 0 | 23 |
 | E | 3 | 1 | 0 | 0 | 0 | 0 | 0 | 4 |
 
@@ -267,6 +267,7 @@ Phase E's elevated density reflects two genuine clarifying-question check-ins at
 - Prohibited-Bash sub-pattern classification heredoc-strips per the prior cases' methodology pinning. The fourth recorded instance of the surface stratification.
 - Disposition column on the operator-narrowing-rounds table is operator-self-reported where available, with explicit *undetermined* entries where operator recall was unavailable at writeup time. The disposition reports temporal property only; intentionality is a separate dimension and is deliberately not a column, per the [2026-05-21 case methodology note 7](2026-05-21-within-thread-commitment-dissolution.md).
 - All Python analysis ran via the [`methodology/tools/`](../methodology/tools/) library invoked from `python3 <<'PY' … PY` Bash heredocs. The heredoc invocation pattern is itself part of the rule-implied-edge stratification documented in this case's Prohibited-Bash table (heredoc content is correctly excluded from the prohibited-Bash counts).
+- **Post-merge reconciliation (2026-06-11).** The [`count_claims.py`](../methodology/tools/count_claims.py) gate's first full-corpus run flagged the per-phase tool distribution's row C: the seven tool columns summed to 75 against a stated Total of 76. Substrate recount against the session JSONL resolved it in the Total's favour: the session had two `ToolSearch` calls at measurement time, not one — the second (a `select:WebFetch` schema load early in Phase C) was dropped from the per-phase `ToolSearch` attribution while the Total column, computed from all tool uses per phase, correctly included it. Row C's `ToolSearch` cell corrected 0 → 1; the Total column was right as shipped. The drift had passed both the case's own verification pass and the PR #7 review — caught only when the check became structural rather than recall-dependent, which is the closing-signoff prediction of [the 2026-05-25 case](2026-05-25-memory-relevance-under-work-character-shift.md) operating on a sibling case's substrate.
 
 ---
 
