@@ -182,12 +182,12 @@ Both echo-separator and pipe-truncation cluster post-L722; see §5 for the task-
 |---|---:|
 | Explicit *"data point"* log entries | **1** (L1424, queued) |
 | Observation + defer-to-later pair | 1 (L360 → L376) |
-| Affect-softened markers (*"not upset"*, *"just curious"*, *"without malice"*) | 4 distinct contexts |
+| Affect-softened markers (*"not upset"*, *"just curious"*, *"without malice"*) | 3 distinct contexts (L360, L627, L946) |
 | Meta-references confirming the discipline | 2 (L937, L946) |
 | `fwiw` / meta-log | 1 (L815) |
 | Compaction-summary false positive | 1 (L1139, excluded) |
 
-Total marker hits: 13 across 113 operator messages. Lower marker-density than the [2026-05-25 case](2026-05-25-substitution-by-default-multiple-surfaces.md)'s session: 2026-05-25 documented the channel; this case is downstream of that documentation and only uses the channel to bridge tier 3.
+Recounted totals, pinned 2026-06-11 after @waitdeadai's review flagged the shipped *"Total marker hits: 13"*: the 13 was a raw tally (operator-confirmed intent) and does not survive the recount. Against the five named marker terms over the 113-operator-message substrate: **12 raw marker-term matches**, 5 of them inside the excluded L1139 compaction echo; **6 operator-authored marker-bearing messages** (L360, L627, L815, L893, L946, L1424), of which L893 is descriptive usage of *"data point"* (corpus-philosophy prose, not a channel entry) and so carries no table row. The rows above count **contexts and overlap by design** — L360 opens the defer pair *and* carries an affect softener; L946 is a meta-reference *and* carries one — so the Count column sums to neither the raw-match nor the distinct-message total. Lower marker-density than the [2026-05-25 case](2026-05-25-substitution-by-default-multiple-surfaces.md)'s session holds at every layer: 2026-05-25 documented the channel; this case is downstream of that documentation and only uses the channel to bridge tier 3.
 
 ### Socratic-narrowing candidates
 
