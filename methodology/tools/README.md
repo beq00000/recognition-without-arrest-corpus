@@ -26,21 +26,21 @@ code-not-model"* principle.
 | `tool_calls.py` | Tool-use counts. Per-tool, per-record-type, per-assistant-record. |
 | `regex_patterns.py` | Named pattern registry + text-surface extractors (Bash inputs, agent emissions, operator messages). Default registry covers RUSE prohibited Bash idioms (#60977), polling-loop / binary-collapse signatures (#60188 + §7), and vocabulary-drift markers. |
 | `socratic.py` | Socratic-narrowing candidate surfacer. Operator-authored questions, compression-ranked, with single-word-callout flag for the RUSE-edge surface. |
+| `count_claims.py` | Count-claim consistency gate over corpus markdown artefacts (cases, incidents) rather than transcripts. Diffs prose count-claims against their enumeration or table sources; runs in CI on every PR. See [Count-claim gate](#count-claim-gate) below. |
 
 ## Running
 
 Tools live in place; nothing is built or installed.
 
 ```bash
-# One-time per fresh checkout (CI is not configured for this repo —
-# these are local-discipline tools, not enforced):
+# One-time per fresh checkout:
 python3.11 -m venv .venv
 .venv/bin/pip install pytest pylint bandit
 
-# Tests
+# Tests (also run in CI on every PR — see .github/workflows/count-claims.yml)
 .venv/bin/pytest
 
-# Lint + static analysis (run on demand; not gated)
+# Lint + static analysis (local discipline; not CI-gated)
 .venv/bin/pylint methodology/tools/
 .venv/bin/bandit -r methodology/tools/ -c pyproject.toml
 ```
@@ -77,6 +77,58 @@ candidates = socratic.by_compression(socratic.candidates(records))
 for c in candidates:
     print(f"line {c.line_number}: {c.text!r}")
 ```
+
+## Count-claim gate
+
+`count_claims.py` is the one module that targets the corpus's own
+markdown artefacts rather than session transcripts. Every corpus PR
+review to date caught at least one internal count drift by hand —
+"fourteen" vs 15 enumerated bullets (#9), "six instances" vs five
+(#10), a prose total contradicting its own table column (#12) — and
+the [PR #9 thread](https://github.com/beq00000/recognition-without-arrest-corpus/pull/9)
+named the remediation: a final-pass diff between every count-claim and
+its enumeration source, structural rather than recall-dependent,
+because the failure mode *is* the writing agent not re-checking. It is
+the retrospective sibling of @waitdeadai's
+[`no-count-drift`](https://github.com/waitdeadai/llm-dark-patterns/pull/27)
+Stop hook (same shape, live-session boundary).
+
+```bash
+# Check a draft before raising the PR:
+.venv/bin/python -m methodology.tools.count_claims cases/2026-06-01-my-case.md
+
+# Audit trail — every checked claim and every abstention with reason:
+.venv/bin/python -m methodology.tools.count_claims --verbose cases/*.md incidents/*.md
+```
+
+Design notes:
+
+- **Abstains rather than guesses.** A claim that cannot be bound to a
+  countable source (a cross-case reference, a section without an
+  enumeration, a ratio row in a Total column) is reported as an
+  abstention under `--verbose`, never as a finding. The summary line
+  always states checked/abstained counts so the scope is never
+  silently narrower than it reads.
+- **CI gating goes through the test suite, not the raw CLI.**
+  `test_count_claims.py::test_live_corpus_is_clean` runs the checker
+  over every file in `cases/` and `incidents/` against an explicit
+  `KNOWN_FINDINGS` baseline — findings in already-merged cases that
+  await reconciliation against a session substrate only the operator
+  holds. New drift fails CI; pinned drift is visible, named, and
+  removed by the reconciliation commit.
+- **Documented out of scope** (semantic, not deterministic): the
+  #8/#11 shape where one label binds two values across sections
+  (raw-vs-post-skip relabelling is the convention that resolves it),
+  and the #10 pre-fix shape where the enumeration itself misclassifies
+  a member. Those still need a reviewer.
+- **Validation set leads with real positives.** The suite checks the
+  actual pre-fix PR #9 revision via `git show` (skipped on shallow
+  clones), not only fixtures authored alongside the rules — the
+  co-evolved-corpus-trap lesson from the PR #9 thread. On its first
+  full-corpus run the checker also surfaced one previously uncaught
+  drift in a merged case (the 2026-05-23 autonomous case's per-phase
+  tool table, row C: columns sum to 75, Total states 76), which is the
+  current `KNOWN_FINDINGS` baseline entry.
 
 ## Verification discipline
 

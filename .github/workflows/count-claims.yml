@@ -1,0 +1,34 @@
+# Count-claim consistency gate. The corpus's PR reviews kept catching
+# internal count drift by hand (#8, #9, #10, #12); the PR #9 thread named
+# the remediation — a structural gate outside the writing agent's recall.
+# This is that gate at the corpus boundary: the pytest suite includes
+# test_live_corpus_is_clean, which runs methodology/tools/count_claims.py
+# over every file in cases/ and incidents/ against an explicit
+# known-findings baseline (see the test file).
+#
+# fetch-depth: 0 because the suite also validates the checker against
+# real historical positives via `git show` (pre-fix case revisions) —
+# the co-evolved-corpus-trap discipline from the PR #9 thread.
+
+name: count-claims
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - run: pytest

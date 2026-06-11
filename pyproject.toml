@@ -5,8 +5,9 @@
 #     python3.11 -m venv .venv
 #     .venv/bin/pip install pytest pylint bandit
 #
-# CI is not configured for this repo; pytest / pylint / bandit are
-# available as local discipline, not enforced.
+# pytest runs in CI on every PR (.github/workflows/count-claims.yml) —
+# it carries the count-claim gate over cases/ and incidents/. pylint and
+# bandit remain local discipline, not enforced.
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
