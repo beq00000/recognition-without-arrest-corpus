@@ -170,7 +170,7 @@ All counts are final-pass; first-pass values and diffs are preserved in the *Fin
 
 | Metric | Count |
 |---|---:|
-| Total records with timestamps | 1355 |
+| Total parsed records (post-skip) | 1355 |
 | Assistant records | 865 |
 | Operator-authored messages (excluding compaction summary) | 105 |
 | Tool-result records | 384 |
@@ -265,7 +265,7 @@ The lower-bound framing is methodologically significant. Substrate captures only
 
 ## Methodology notes
 
-- All measurements drawn from the agent's session transcript JSONL stored locally by Claude Code at `~/.claude/projects/<project-id>/<session-id>.jsonl`. ~6.0 MB / 1690 timestamped records. Analyses via [`methodology/tools/`](../methodology/tools/) (third downstream consumer after [2026-05-24](2026-05-24-substrate-match-without-walked-warrant.md) and [2026-05-25](2026-05-25-substitution-by-default-multiple-surfaces.md)) plus session-specific incident scripts.
+- All measurements drawn from the agent's session transcript JSONL stored locally by Claude Code at `~/.claude/projects/<project-id>/<session-id>.jsonl`. ~6.0 MB / 1690 raw timestamped records, of which 1355 parse post-skip per [`methodology/tools/transcript.py`](../methodology/tools/transcript.py) — the substrate of record used throughout this case (see the session-aggregate table), mirroring the raw-vs-parsed naming pinned on the [2026-05-24 case](2026-05-24-substrate-match-without-walked-warrant.md). Analyses via [`methodology/tools/`](../methodology/tools/) (third downstream consumer after [2026-05-24](2026-05-24-substrate-match-without-walked-warrant.md) and [2026-05-25](2026-05-25-substitution-by-default-multiple-surfaces.md)) plus session-specific incident scripts.
 - **Compaction.** Mid-session compaction occurred during the analysis-pass phase (within Phase E). JSONL is unmodified by compaction (conversation-context-only); pre-compaction events at line ranges below the compaction marker remain JSONL-recoverable. Per the [2026-05-25 case](2026-05-25-substitution-by-default-multiple-surfaces.md) precedent, the substrate-of-record discipline applies symmetrically.
 - **Within-pass cascade observations — five within-pass-analysis instances.** Per [2026-05-21 *recurrence-is-data*](2026-05-21-within-thread-commitment-dissolution.md) and [PR #9 cascade-tracking discipline](https://github.com/beq00000/recognition-without-arrest-corpus/pull/9). All five caught at the recovery boundary by operator gradient-narrowing or by re-engagement of canonical-source substrate; none autonomous-recovered:
   - **First-pass quant "RUSE substrate is large" emission** one section into the first-pass quant pass, replicating the [2026-05-24 §3 tool-output-as-substrate sub-shape](2026-05-24-substrate-match-without-walked-warrant.md) directly. Caught at recovery by the agent's own reading of the 2026-05-24 case after the operator's directive to *"read all the cases and comments including the PRs"*. The case-canonical-source-skip surfaced the §3 prediction (*"first worked-example violation under instrumentation"*) and produced the second worked-example violation in the same family.
