@@ -99,6 +99,8 @@ The corpus's cases derive quantitative measurements — tool-call counts, per-re
 
 Scope: retrospective analysis of completed Claude Code session JSONLs at `~/.claude/projects/<project-slug>/<session-uuid>.jsonl`. Deterministic parsing and regex, matching the *"out-of-loop, deterministic, code-not-model"* principle that runs through the cluster's defences. Distinct from the hook-shipping cluster above which gates emission during live sessions.
 
+The library also carries one gate that targets the corpus's own artefacts rather than session transcripts: [`tools/count_claims.py`](tools/count_claims.py) diffs every count-claim in a case file's prose against its enumeration or table source, and runs in CI on every PR. The gate's lineage is the [PR #9 review thread](https://github.com/beq00000/recognition-without-arrest-corpus/pull/9), where the recurring reviewer catch (#8, #9, #10, #12 — internal count drift in the case under review) was named as needing a verification gate that is *structural rather than recall-dependent*. It is the retrospective sibling of @waitdeadai's [`no-count-drift`](https://github.com/waitdeadai/llm-dark-patterns/pull/27) Stop hook, which gates the same failure shape during live sessions; the two compose across the same boundary the table above describes.
+
 See [`tools/README.md`](tools/README.md) for the module set, usage examples, and extension instructions.
 
 ## The MAST 3.3 anchor
